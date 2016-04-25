@@ -1,0 +1,48 @@
+<?php
+$start_date = '2015-01-01';
+$end_date = '2016-12-31';
+if(isset($_POST['start_date']) && isset($_POST['end_date']))
+{
+	$start_date = $_POST['start_date'];
+	$end_date = $_POST['end_date'];
+}
+?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Timecard Example</title>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+			${demo.css}
+		</style>
+		<script type="text/javascript" src="timecard_examples_js/percent_of_time.js"></script>
+	</head>
+	<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div align="center">For Time Period: <?php echo $start_date; ?> through <?php echo $end_date; ?> </div>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<form action="percent_of_time.php" method="post">
+<br />
+Start Date: <input name="start_date" value="<?php echo $start_date; ?>" type="date"> 
+End Date:<input name="end_date" value="<?php echo $end_date; ?>" type="date"><br /><br />
+<input value="Submit" type="submit">
+</form>
+<!--
+<h3>Pseudo Query:</h3>
+<p><font face="Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">
+select to_date(t.time_card_date, 'Q-YYYY') as 'QUARTER' <br />
+,sum(case when t.activity_name in () then t.hours else 0 end) as 'Non Working Time' <br />
+,sum(case when t.activity_name in () then t.hours else 0 end) as 'NPT Time' <br />
+,sum(case when t.activity_name in () then t.hours else 0 end) as 'Project Time' <br />
+,sum(case when t.activity_name in () then t.hours else 0 end) / <br />
+	sum(case when t.activity_name in () then t.hours else 0 end) as 'Non Working Time' <br />
+from timecard t <br />
+group by to_date(t.time_card_date, 'Q-YYYY') <br />
+order by to_date(t.time_card_date, 'Q-YYYY') <br />
+-->
+</font></p>
+	</body>
+</html>
